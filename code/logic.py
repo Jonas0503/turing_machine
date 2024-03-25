@@ -18,19 +18,19 @@ class TuringMachine:
 
         for instruction in self.instructions:
             if len(instruction[0]) != 2 or len(instruction[1]) != 3:
-                print("Wrong size for tuple in instructions.")
+                print("Wrong size for a tuple in instructions.")
                 return False
 
             if instruction[0][0] not in self.states or instruction[1][0] not in self.states:
-                print("A state is not part of the states set.")
+                print("A state in the instructions is not part of the states set.")
                 return False
 
             if instruction[0][1] not in self.alphabet or instruction[1][1] not in self.alphabet:
-                print("A symbol is not part of the alphabet.")
+                print("A symbol in the instructions is not part of the alphabet.")
                 return False
 
             if instruction[1][2] != "L" and instruction[1][2] != "R" and instruction[1][2] != "N":
-                print("The direction must be defined as L, R or N.")
+                print(f"The direction {instruction[1][2]} in the instructions must be defined as L, R or N.")
                 return False
 
         for symbol_on_tape in self.tape:
@@ -42,7 +42,7 @@ class TuringMachine:
                     count += 1
 
             if count == len(self.alphabet):
-                print(f"The symbol {symbol_on_tape} is not part of the alphabet.")
+                print(f"The symbol {symbol_on_tape} on the tape is not part of the alphabet.")
                 return False
 
         return True
