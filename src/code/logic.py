@@ -1,5 +1,5 @@
 class TuringMachine:
-    def __init__(self, alphabet: set, states: set, tape: list, instructions: list[tuple], start_state, end_state):
+    def __init__(self, alphabet: set, states: set, tape: list, instructions: list[(tuple, tuple)], start_state, end_state) -> None:
         self.alphabet = alphabet
         self.states = states
         self.tape = tape
@@ -48,7 +48,7 @@ class TuringMachine:
         return True
 
 
-    def eval_turing_machine(self, state, position=0):
+    def eval_turing_machine(self, state, position: int = 0) -> list:
         symbol_on_tape = self.tape[position]
         for instruction in self.instructions:
             if instruction[0][0] == state and symbol_on_tape == instruction[0][1]:
@@ -73,19 +73,20 @@ class TuringMachine:
             return self.eval_turing_machine(state, position)
 
 
-# example
-tape = [1, 0, 1, 0, 1, 1, 0, 0]
-alphabet = {"_", 0, 1}
-states = {"a", "b", "c", "d"}
-instructions = [(("a", 1), ("a", 1, "R")),
-                (("a", 0), ("a", 0, "R")),
-                (("a", "_"), ("d", "_", "L")),
-                (("c", 0), ("c", 0, "L")),
-                (("c", 1), ("c", 1, "L")),
-                (("c", "_"), ("b", "_", "R")),
-                (("d", 0), ("c", 1, "L")),
-                (("d", 1), ("d", 0, "L")),
-                (("d" "_"), ("b", 1, "N"))]
+if __name__ == "__main__":
+    # example
+    tape = [1, 0, 1, 0, 1, 1, 0, 0]
+    alphabet = {"_", 0, 1}
+    states = {"a", "b", "c", "d"}
+    instructions = [(("a", 1), ("a", 1, "R")),
+                    (("a", 0), ("a", 0, "R")),
+                    (("a", "_"), ("d", "_", "L")),
+                    (("c", 0), ("c", 0, "L")),
+                    (("c", 1), ("c", 1, "L")),
+                    (("c", "_"), ("b", "_", "R")),
+                    (("d", 0), ("c", 1, "L")),
+                    (("d", 1), ("d", 0, "L")),
+                    (("d" "_"), ("b", 1, "N"))]
 
-tm = TuringMachine(alphabet, states, tape, instructions, "a", "b")
-print(tm.eval_turing_machine(tm.start_state, 0))
+    tm = TuringMachine(alphabet, states, tape, instructions, "a", "b")
+    print(tm.eval_turing_machine(tm.start_state, 0))
