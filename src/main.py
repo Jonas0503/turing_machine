@@ -1,11 +1,7 @@
 import json
-import unittest
 import sys
-from test.tests import TestTuringMachine
 from code.logic import TuringMachine
 
-# test = unittest.TestLoader().loadTestsFromTestCase(TestTuringMachine)
-# unittest.TextTestRunner().run(test)
 
 def read_json() -> dict:
     if len(sys.argv) != 2:
@@ -43,4 +39,5 @@ def create_new_tm() -> TuringMachine:
 
 if __name__ == "__main__":
     tm = create_new_tm()
+    tm.check_input()
     print(tm.eval_turing_machine(tm.start_state, 0))
