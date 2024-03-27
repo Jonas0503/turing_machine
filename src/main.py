@@ -4,6 +4,7 @@ from code.logic import TuringMachine
 
 
 def read_json() -> dict:
+    # the second argument must be the file name
     if len(sys.argv) != 2:
         print("You must enter a filename and nothing more.")
         return
@@ -20,6 +21,7 @@ def read_json() -> dict:
     return data
 
 
+# converts the dict to the right data types
 def create_new_tm() -> TuringMachine:
     data = read_json()
     instructions_from_json: list = data["instructions"]

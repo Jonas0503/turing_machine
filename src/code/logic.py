@@ -7,6 +7,7 @@ class TuringMachine:
         self.start_state = start_state
         self.end_state = end_state
 
+
     def check_input(self) -> bool:
         if self.start_state not in self.states:
             print("The start state is not part of the states set.")
